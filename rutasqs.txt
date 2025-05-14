@@ -1,0 +1,46 @@
+https://www.quizapp/*
+https://www.quizapp/login
+https://www.quizapp/home
+https://www.quizapp/quiz:id
+https://www.quizapp/quiz:id/question:id
+
+
+HomePage: Traemos todos los cuestionarios con sus atributos
+Quiz: Tenemos ID_cuestionario, traes los atributos del cuestionario por el id, traemos todas las preguntas y las filtramos según el atributo preguntas de nuestro cuestionario.
+Quiz/question: el usuario ingreso a una pregunta y con ese id se trae la información de la pregunta.
+
+
+
+DB:
+
+Cuestionarios: [
+{
+  "ID_cuestionario":
+  "Nombre":
+  "Descripcion":
+  "Preguntas": [ 1, 2, ... , N ]
+},
+{
+  ...
+},
+...
+]
+
+
+Preguntas: [
+{
+  "ID_pregunta": 
+  "Titulo":
+  "Pregunta":
+  "Tipo":
+  "Opciones": [opcion1, opcion2, opcion3]
+},
+{
+  ...
+},
+...
+]
+
+
+
+
