@@ -15,10 +15,9 @@ DB:
 
 Cuestionarios: [
 {
-  "ID_cuestionario":
+  "id":
   "Nombre":
   "Descripcion":
-  "Preguntas": [ 1, 2, ... , N ]
 },
 {
   ...
@@ -26,10 +25,14 @@ Cuestionarios: [
 ...
 ]
 
+PreguntasCuestionario: { // GET /PreguntasCuestionario/:id_cuestionario
+  id1:  [ { id, titulo }, .... ],
+  id2:  [ .... ]
+}
 
-Preguntas: [
-{
-  "ID_pregunta": 
+Preguntas: { // GET /Preguntas/:id_pregunta
+  id: {
+  "id": 
   "Titulo":
   "Pregunta":
   "Tipo":
@@ -40,6 +43,15 @@ Preguntas: [
 },
 ...
 ]
+
+Respuestas: { // GET|POST /Respuestas/:id_usuario/:id_pregunta
+  id_usuario1: {
+    id_pregunta1: {
+       "timeStamp":
+        "answer": 
+    }
+  }
+}
 
 
 
