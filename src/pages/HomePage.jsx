@@ -1,60 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-function Cuestionarios() {
-  const cuestionarios = [
-    "Cuestionario de Introducción",
-    "Preferencias Personales",
-  ];
+function HomePage() {
+  const [cuestionarios, setCuestionarios] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const manejarClick = (nombre) => {
-    alert(`Abriste el ${nombre}`);
-  };
+  useEffect(() => {
+    fetch("http://localhost:3000/Cuestionarios")
+      .then((res) => res.json())
+      .then((data) => {
+        setCuestionarios(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error al cargar los cuestionarios:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div className="page-container">Cargando cuestionarios...</div>;
+  }
 
   return (
-    <div style={estilos.contenedor}>
-      <h1 style={estilos.titulo}>Cuestionarios</h1>
-      <div style={estilos.botones}>
-        {cuestionarios.map((nombre, index) => (
-          <button
-            key={index}
-            onClick={() => manejarClick(nombre)}
-            style={estilos.boton}
-          >
-            {nombre}
-          </button>
-        ))}
-      </div>
+    <div className="page-container">
+      <h1>Cuestionarios</h1>
+      {cuestionarios.map((quiz) => (
+        <div key={quiz.id} style={{ marginBottom: "1.5rem" }}>
+          <h2>{quiz.Nombre}</h2>
+          <p>{quiz.Descripcion}</p>
+          <Link to={`/quiz/${quiz.id}`}>
+            <button>Ver preguntas</button>
+          </Link>
+        </div>
+      ))}
     </div>
   );
 }
 
-const estilos = {
-  contenedor: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    marginTop: "50px",
-    fontFamily: "Arial, sans-serif",
-  },
-  titulo: {
-    fontSize: "32px",
-    marginBottom: "20px",
-  },
-  botones: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
-    width: "300px",
-  },
-  boton: {
-    padding: "10px 20px",
-    fontSize: "16px",
-    cursor: "pointer",
-    borderRadius: "8px",
-    border: "1px solid #ccc",
-    backgroundColor: "#f1f1f1",
-    transition: "background 0.3s",
-  },
-};
-
-export default Cuestionarios;
+export default HomePage;
