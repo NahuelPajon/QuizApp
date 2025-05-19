@@ -1,25 +1,25 @@
 import { Route, Routes, Navigate } from "react-router-dom";
+import "./App.css";
 
-import './App.css'
+import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
+import QuizPage from "./pages/QuizPage";
+import QuestionPage from "./pages/QuestionPage";
 
 function App() {
   return (
-    <>
-      <Routes>
-        {/* you can use 👇 character (* or wildcard) to any other route
-        in combination with the Navigate component you can redirect the user to a default page */}
-        <Route path="/*" element={<Navigate replace to="/login" />} />
-
-          
-        {/* </Route> */}
-        <Route path="/" element={<Navigate replace to="/login" />} />
-        <Route path="/login" element={<LoginPage />}/>
-        <Route path="/home" element={<HomePage />}/>
-        <Route path="/quiz:id" element={<QuizPage />} />
-        <Route path="/quiz:id/question:id" element={<QuestionPage />} />
-      </Routes>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<Navigate replace to="/login" />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/quiz/:id" element={<QuizPage />} />
+      <Route
+        path="/quiz/:quizId/question/:questionId"
+        element={<QuestionPage />}
+      />
+      <Route path="*" element={<Navigate replace to="/login" />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
