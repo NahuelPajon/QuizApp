@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 
@@ -13,13 +14,11 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/quiz/:id" element={<QuizPage />} />
-      <Route
-        path="/quiz/:quizId/question/:questionId"
-        element={<QuestionPage />}
-      />
+      <Route path="/quiz/:id/question/:qid" element={<QuestionPage />} />
       <Route path="*" element={<Navigate replace to="/login" />} />
     </Routes>
   );
 }
 
 export default App;
+
